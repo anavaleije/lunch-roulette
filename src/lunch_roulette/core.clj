@@ -1,15 +1,13 @@
 (ns lunch-roulette.core
   (:require [lunch-roulette.data :as data]))
 
-(def min-groups-size 4)
+(def min-groups-size 3)
 (def n-groups (quot (count data/people) min-groups-size))
 
 (defn sample-restaurant-groups [n-groups restaurants]
   (->> (shuffle restaurants)
        (take n-groups)
-       (mapv (fn [restaurant]
-               {:people     []
-                :restaurant restaurant}))))
+       (#(zipmap % (repeat n-groups {:people []})))))
 
 (defn score [person group]
   (print group))
