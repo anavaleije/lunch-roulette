@@ -9,20 +9,25 @@
          (count groups) => 4
          (count (set groups)) => 4
          (filter #(or (> % 10) (< % 0)) (keys groups)) => ()
-         (get groups first-restaurant) => {:people []
+         (get groups first-restaurant) => {:people     []
                                            :restaurant first-restaurant}))
 
-(def green-house-group nil)
-(def groups {:green-house {:people []}
-             :old-burguer {:people []}})
 (def fulana-key :fulana.silva)
 (def fulana (fulana-key data/people))
 
+(def green-house-group {:people     []
+                        :restaurant :green-house})
+(def old-burger-group {:people     []
+                       :restaurant :old-burger})
+(def groups {:green-house green-house-group
+             :old-burger  old-burger-group})
+
 (fact "on allocate person"
-      (allocate-person groups [fulana-key fulana]) => group-2 #_(assoc group-2 :people [person-key])
+      (allocate-person groups [fulana-key fulana])
+      => (update-in groups [:old-burger :people] conj fulana-key)
       (provided
-        (score person group-1) => 1
-        (score person group-2) => 2))
+        (score fulana green-house-group) => 1
+        (score fulana old-burger-group) => 2))
 
 (fact "on score"
       (score person-key group-1) => 1)

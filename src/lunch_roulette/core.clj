@@ -4,9 +4,9 @@
 (def min-groups-size 3)
 (def n-groups (quot (count data/people) min-groups-size))
 
-(defn tap [k]
-  (println k)
-  k)
+(defn tap [k v]
+  (println (str k v))
+  v)
 
 (defn sample-restaurant-groups [n-groups restaurants]
   (let [groups (->> (shuffle restaurants)
@@ -22,8 +22,8 @@
   0)
 
 (defn allocate-person [groups [person-key person]]
-  (let [[chosen-restaurant _] (apply max-key (partial score person) groups)]
-    (update-in groups [chosen-restaurant :people] #(conj % person-key))))
+  (let [{:keys [restaurant]} (apply max-key (partial score person) (vals groups))]
+    (update-in groups [restaurant :people] #(conj % person-key))))
 
 (defn sample-next-event-groups []
   (let [groups (sample-restaurant-groups n-groups (keys data/restaurants))]
