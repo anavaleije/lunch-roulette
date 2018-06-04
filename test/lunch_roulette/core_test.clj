@@ -1,5 +1,6 @@
 (ns lunch-roulette.core-test
   (:require [lunch-roulette.core :refer :all]
+            [lunch-roulette.data :as data]
             [midje.sweet :refer :all]))
 
 (facts "on sample-restaurant-groups"
@@ -12,17 +13,14 @@
               first
               groups) => {:people []}))
 
-(def person-key :fulana.silva)
-(def person {:slack                "@fulana.silva"
-             :email                "fulana.silva@uhu.com.br"
-             :restrictions         []
-             :disliked-restaurants []})
-(def group-1 {:restaurant :1})
-(def group-2 {:restaurant :2})
-(def groups [group-1 group-2])
+(def green-house-group nil)
+(def groups {:green-house {:people []}
+             :old-burguer {:people []}})
+(def fulana-key :fulana.silva)
+(def fulana (fulana-key data/people))
 
 (fact "on allocate person"
-      (allocate-person groups [person-key person]) => group-2 #_(assoc group-2 :people [person-key])
+      (allocate-person groups [fulana-key fulana]) => group-2 #_(assoc group-2 :people [person-key])
       (provided
         (score person group-1) => 1
         (score person group-2) => 2))
@@ -30,4 +28,6 @@
 (fact "on score"
       (score person-key group-1) => 1)
 
-(fact "on sample-next-event-groups")
+; Integration tests
+(fact "on sample-next-event-groups"
+      (sample-next-event-groups) => nil)

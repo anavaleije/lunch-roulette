@@ -41,9 +41,9 @@
                  :gluten-free? false}
    :old-burger  {:name         "Old Burger"
                  :address      "Rua das Andorinhas, 0"
-                 :vegan?       false
+                 :vegan?       true
                  :vegetarian?  true
-                 :gluten-free? true}})
+                 :gluten-free? false}})
 
 (def past-events
   ["2018-05-08" [{:people     [:siclana :beltrana :siclano]
