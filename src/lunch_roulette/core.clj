@@ -9,9 +9,14 @@
   k)
 
 (defn sample-restaurant-groups [n-groups restaurants]
-  (->> (shuffle restaurants)
-       (take n-groups)
-       (#(zipmap % (repeat n-groups {:people []})))))
+  (let [groups (->> (shuffle restaurants)
+                    (take n-groups)
+                    (#(zipmap % (repeat n-groups {:people []}))))]
+    (reduce
+      (fn [groups restaurant]
+        (assoc-in groups [restaurant :restaurant] restaurant))
+      groups
+      (keys groups))))
 
 (defn score [person group]
   0)
