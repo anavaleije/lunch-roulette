@@ -1,5 +1,6 @@
 (ns lunch-roulette.core
-  (:require [lunch-roulette.data :as data]))
+  (:require [lunch-roulette.data :as data]
+            [lunch-roulette.scoring :as scoring]))
 
 (def min-groups-size 3)
 (def n-groups (quot (count data/people) min-groups-size))
@@ -18,11 +19,8 @@
       groups
       (keys groups))))
 
-(defn score [person group]
-  0)
-
 (defn allocate-person [groups [person-key person]]
-  (let [{:keys [restaurant]} (apply max-key (partial score person) (vals groups))]
+  (let [{:keys [restaurant]} (apply max-key (partial scoring/score person) (vals groups))]
     (update-in groups [restaurant :people] #(conj % person-key))))
 
 (defn sample-next-event-groups []

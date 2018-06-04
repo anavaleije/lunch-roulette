@@ -1,5 +1,7 @@
 (ns lunch-roulette.data)
 
+(def incompatible-score -1000000)
+
 (def people
   {:fulana.silva   {:slack                "@fulana.silva"
                     :email                "fulana.silva@uhu.com.br"
@@ -29,21 +31,31 @@
                     :disliked-restaurants [:pasta-mix :old-burger]}})
 
 (def restaurants
-  {:green-house {:name         "Green House"
-                 :address      "Rua dos Pombos, 0"
-                 :vegan?       true
-                 :vegetarian?  true
-                 :gluten-free? true}
-   :pasta-mix   {:name         "Pasta Mix"
-                 :address      "Rua das Gaivotas, 0"
-                 :vegan?       false
-                 :vegetarian?  true
-                 :gluten-free? false}
-   :old-burger  {:name         "Old Burger"
-                 :address      "Rua das Andorinhas, 0"
-                 :vegan?       true
-                 :vegetarian?  true
-                 :gluten-free? false}})
+  {:green-house        {:name        "Green House"
+                        :address     "Rua dos Pombos, 0"
+                        :vegan       true
+                        :vegetarian  true
+                        :gluten-free true}
+   :almost-green-house {:name        "Almost Green House"
+                        :address     "Rua dos Pombos, 1"
+                        :vegan       false
+                        :vegetarian  true
+                        :gluten-free true}
+   :green-with-gluten  {:name        "Green With Gluten"
+                        :address     "Rua dos Pombos, 1"
+                        :vegan       true
+                        :vegetarian  true
+                        :gluten-free false}
+   :pasta-mix          {:name        "Pasta Mix"
+                        :address     "Rua das Gaivotas, 0"
+                        :vegan       false
+                        :vegetarian  true
+                        :gluten-free false}
+   :old-burger         {:name        "Old Burger"
+                        :address     "Rua das Andorinhas, 0"
+                        :vegan       false
+                        :vegetarian  false
+                        :gluten-free true}})
 
 (def past-events
   ["2018-05-08" [{:people     [:siclana :beltrana :siclano]
