@@ -1,6 +1,7 @@
 (ns lunch-roulette.core-test
   (:require [lunch-roulette.core :refer :all]
             [lunch-roulette.data :as data]
+            [lunch-roulette.scoring :as scoring]
             [midje.sweet :refer :all]))
 
 (facts "on sample-restaurant-groups"
@@ -28,12 +29,10 @@
   (allocate-person groups [fulana-key fulana])
   => (update-in groups [:old-burger :people] conj fulana-key)
   (provided
-    (score fulana green-house-group) => 1
-    (score fulana old-burger-group) => 2))
+    (scoring/score fulana green-house-group) => 1
+    (scoring/score fulana old-burger-group) => 2))
 
-(fact "on score"
-      (score person-key group-1) => 1)
-
-; Integration tests
-(fact "on sample-next-event-groups"
-      (sample-next-event-groups) => nil)
+;
+;; Integration tests
+;(fact "on sample-next-event-groups"
+;      (sample-next-event-groups) => nil)
