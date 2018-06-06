@@ -18,7 +18,11 @@
 
 (defn sample-next-event-groups []
   (let [groups (sample-restaurant-groups data/n-groups (keys data/restaurants))]
-    (reduce
-      allocate-person
-      groups
-      data/people)))
+    (-> (reduce
+          allocate-person
+          groups
+          data/people)
+        vals)))
+
+(comment
+  (sample-next-event-groups))
