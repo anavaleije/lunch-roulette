@@ -75,34 +75,3 @@
                   :restaurant :green-house}
                  {:people     [:fulana :beltrana :beltrano]
                   :restaurant :pasta-mix}]])
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -2,10 +2,6 @@
   (:require [lunch-roulette.data :as data]
             [lunch-roulette.scoring :as scoring]))
 
-(defn tap [k v]
-  (println (str k v))
-  v)
-
 (defn sample-restaurant-groups [n-groups restaurants]
   (let [groups (->> (shuffle restaurants)
                     (take n-groups)

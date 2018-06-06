@@ -27,6 +27,6 @@
   (fact "disliked restaurants also return `incompatible` score"
     (score fulana (group :old-burger)) => data/incompatible-score)
   (fact "a group with more people allocated has a smaller score"
-    (< (score fulana (tap "group: " (group [:beltrana.souza] :pasta-mix)))
-       (score fulana (tap "group: " (group [] :pasta-mix))))
+    (< (score fulana (group [:beltrana.souza] :pasta-mix))
+       (score fulana (group [] :pasta-mix)))
     => true))
