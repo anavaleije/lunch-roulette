@@ -67,11 +67,13 @@
                         :gluten-free true}})
 
 (def past-events
-  ["2018-05-08" [{:people     [:siclana :beltrana :siclano]
-                  :restaurant :green-house}
-                 {:people     [:fulana :fulano :beltrano]
-                  :restaurant :old-burger}]
-   "2018-05-15" [{:people     [:siclana :fulano :siclano]
-                  :restaurant :green-house}
-                 {:people     [:fulana :beltrana :beltrano]
-                  :restaurant :pasta-mix}]])
+  [{:date   "2018-05-08"
+    :groups [{:people     [:siclana :beltrana :siclano]
+              :restaurant :green-house}
+             {:people     [:fulana :fulano :beltrano]
+              :restaurant :old-burger}]}
+   {:date   "2018-05-15"
+    :groups [{:people     [:siclana :fulano :siclano]
+              :restaurant :green-house}
+             {:people     [:fulana :beltrana :beltrano]
+              :restaurant :pasta-mix}]}])

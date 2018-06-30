@@ -9,6 +9,19 @@
         (mapv restaurant)
         (some false?))))
 
+(defn people-frequency [person past-events]
+  (reduce
+    (fn [m {:keys [groups]}]
+      (->> (filter (fn [{:keys [people]}]
+                     (some #(= person %) people)) groups)
+           first
+           :people
+           (#(interleave % (repeat 1)))
+           (apply assoc {})
+           (merge-with + m)))
+    {}
+    past-events))
+
 (defn score [person group]
   (if (restaurant-is-incompatible? person (data/restaurants (:restaurant group)))
     data/incompatible-score
