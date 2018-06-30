@@ -29,8 +29,8 @@
   (allocate-person groups [fulana-key fulana])
   => (update-in groups [:old-burger :people] conj fulana-key)
   (provided
-    (scoring/score fulana green-house-group) => 1
-    (scoring/score fulana old-burger-group) => 2))
+    (scoring/score fulana green-house-group data/past-events) => 1
+    (scoring/score fulana old-burger-group data/past-events) => 2))
 
 ;
 ;; Integration tests
