@@ -38,14 +38,19 @@
 (facts "on score"
 
   (fact "vegan/vegetarian/gluten free return `incompatible` score"
-    (score siclana (group :almost-green-house)) => data/incompatible-score
-    (score siclana (group :green-with-gluten)) => data/incompatible-score
-    (score beltrana (group :old-burger)) => data/incompatible-score)
+    (score siclana (group :almost-green-house) []) => data/incompatible-score
+    (score siclana (group :green-with-gluten) []) => data/incompatible-score
+    (score beltrana (group :old-burger) []) => data/incompatible-score)
 
   (fact "disliked restaurants also return `incompatible` score"
-    (score fulana (group :old-burger)) => data/incompatible-score)
+    (score fulana (group :old-burger) []) => data/incompatible-score)
 
   (fact "a group with more people allocated has a smaller score"
-    (< (score fulana (group [:beltrana.souza] :pasta-mix))
-       (score fulana (group [] :pasta-mix)))
+    (< (score fulana (group [:someone] :pasta-mix) [])
+       (score fulana (group [] :pasta-mix) []))
+    => true)
+
+  (fact "a group with people someone has already had lunch with has a smaller score"
+    (< (score fulana (group [:beltrano.souza] :pasta-mix) past-events)
+       (score fulana (group [:fulano.silva] :pasta-mix) past-events))
     => true))

@@ -13,7 +13,9 @@
       (keys groups))))
 
 (defn allocate-person [groups [person-key person]]
-  (let [{:keys [restaurant]} (apply max-key (partial scoring/score person) (vals groups))]
+  (let [{:keys [restaurant]} (apply max-key
+                                    (partial scoring/score person data/past-events)
+                                    (vals groups))]
     (update-in groups [restaurant :people] #(conj % person-key))))
 
 (defn format-slack-message [results all-people all-restaurants]

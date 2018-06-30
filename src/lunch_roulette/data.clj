@@ -5,28 +5,34 @@
 (def min-groups-size 3)
 
 (def people
-  {:fulana.silva   {:slack                "@fulana.silva"
+  {:fulana.silva   {:id                   :fulana.silva
+                    :slack                "@fulana.silva"
                     :email                "fulana.silva@uhu.com.br"
                     :restrictions         []
                     :disliked-restaurants [:old-burger]}
-   :beltrana.souza {:slack                "@beltrana"
+   :beltrana.souza {:id                   :beltrana.souza
+                    :slack                "@beltrana"
                     :email                "beltrana.souza@uhu.com.br"
                     :restrictions         [:vegetarian]
                     :disliked-restaurants []}
-   :siclana.jesus  {:slack                "@siclana"
+   :siclana.jesus  {:id                   :siclana.jesus
+                    :slack                "@siclana"
                     :email                "siclana.jesush@uhu.com.br"
                     :restrictions         [:gluten-free
                                            :vegan]
                     :disliked-restaurants [:pasta-mix :old-burger]}
-   :fulano.silva   {:slack                "@fulano.silva"
+   :fulano.silva   {:id                   :fulano.silva
+                    :slack                "@fulano.silva"
                     :email                "fulano.silva@uhu.com.br"
                     :restrictions         []
                     :disliked-restaurants [:old-burger]}
-   :beltrano.souza {:slack                "@beltrano"
+   :beltrano.souza {:id                   :beltrano.souza
+                    :slack                "@beltrano"
                     :email                "beltrano.souza@uhu.com.br"
                     :restrictions         [:vegetarian]
                     :disliked-restaurants []}
-   :siclano.jesus  {:slack                "@siclano"
+   :siclano.jesus  {:id                   :siclano.jesus
+                    :slack                "@siclano"
                     :email                "siclano.jesush@uhu.com.br"
                     :restrictions         [:gluten-free
                                            :vegan]
