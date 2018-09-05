@@ -1,16 +1,7 @@
 (ns lunch-roulette.core
   (:require [lunch-roulette.data :as data]
+            [lunch-roulette.sampling :as sampling]
             [lunch-roulette.scoring :as scoring]))
-
-(defn sample-restaurant-groups [n-groups restaurants]
-  (let [groups (->> (shuffle restaurants)
-                    (take n-groups)
-                    (#(zipmap % (repeat n-groups {:people []}))))]
-    (reduce
-      (fn [groups restaurant]
-        (assoc-in groups [restaurant :restaurant] restaurant))
-      groups
-      (keys groups))))
 
 (defn allocate-person [groups [person-key person]]
   (let [{:keys [restaurant]} (apply max-key
@@ -28,7 +19,7 @@
        (clojure.string/join "\n")))
 
 (defn sample-next-event-groups []
-  (let [groups (sample-restaurant-groups data/n-groups (keys data/restaurants))
+  (let [groups (sampling/sample-restaurant-groups data/n-groups (keys data/restaurants))
         results (-> (reduce
                       allocate-person
                       groups
