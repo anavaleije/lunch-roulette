@@ -1,5 +1,19 @@
 (ns lunch-roulette.sampling)
 
+(defn restaurants-frequency [restaurants past-events]
+  (let [initial-restaurants-freq (->> (repeat 0)
+                                      (interleave (keys restaurants))
+                                      (apply hash-map))
+        past-events-restaurants (->> past-events
+                                     (mapv :groups)
+                                     flatten
+                                     (mapv :restaurant))]
+    (reduce
+      (fn [restaurants-freq restaurant]
+        (update restaurants-freq restaurant inc))
+      initial-restaurants-freq
+      past-events-restaurants)))
+
 (defn sample-restaurant-groups [n-groups restaurants]
   (let [groups (->> (shuffle restaurants)
                  (take n-groups)
