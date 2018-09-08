@@ -16,12 +16,23 @@
       initial-restaurants-freq
       past-events-restaurants)))
 
-(defn sample-restaurant-groups [n-groups restaurants]
-  (let [groups (->> (shuffle restaurants)
-                 (take n-groups)
-                 (#(zipmap % (repeat n-groups {:people []}))))]
+(defn sample-restaurant-groups [{:keys [n-groups restaurants past-events]}]
+  (let [groups (->> past-events
+                    (restaurants-frequency restaurants)
+                    (sort-by second)
+                    (keys)
+                    (take n-groups)
+                    (#(zipmap % (repeat n-groups {:people []}))))]
     (reduce
       (fn [groups restaurant]
         (assoc-in groups [restaurant :restaurant] restaurant))
       groups
       (keys groups))))
+
+
+(comment
+  (require '[lunch-roulette.data-bkp :as data-bkp])
+
+  (->> (restaurants-frequency data-bkp/restaurants data-bkp/past-events)
+       (sort-by second))
+  )

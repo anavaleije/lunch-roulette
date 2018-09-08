@@ -1,11 +1,8 @@
 (ns lunch-roulette.core-test
   (:require [lunch-roulette.core :refer :all]
-            [lunch-roulette.data :as data]
+            [lunch-roulette.aux :as aux]
             [lunch-roulette.scoring :as scoring]
             [midje.sweet :refer :all]))
-
-(def fulana-key :fulana.silva)
-(def fulana (fulana-key data/people))
 
 (defn group [restaurant]
   {:people     []
@@ -16,12 +13,15 @@
 (def groups {:green-house green-house-group
              :old-burger  old-burger-group})
 
+(def env {:restaurants aux/restaurants
+          :past-events aux/past-events})
+
 (fact "on allocate person"
-  (allocate-person groups [fulana-key fulana])
-  => (update-in groups [:old-burger :people] conj fulana-key)
-  (provided
-    (scoring/score fulana green-house-group data/past-events) => 1
-    (scoring/score fulana old-burger-group data/past-events) => 2))
+      (allocate-person env groups [aux/fulana-key aux/fulana])
+      => (update-in groups [:old-burger :people] conj aux/fulana-key)
+      (provided
+        (scoring/score aux/fulana green-house-group env) => 1
+        (scoring/score aux/fulana old-burger-group env) => 2))
 
 ;
 ;; Integration tests
