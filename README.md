@@ -10,7 +10,9 @@ improve teams integration. Lunch roulette samples the groups from the following 
 
 ## Usage
 
-FIXME
+First, you need to define your `data.clj` to reflect your colleagues and restaurants. Once this is set, you can just `lein run` and it'll sample the next lunch groups. It'll print two blocks of information:
+  - A message to be sent in Slack
+  - A list to be manually added to `past-events` in your `data.clj`
 
 ## License
 
