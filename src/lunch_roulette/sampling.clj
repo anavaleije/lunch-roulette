@@ -10,7 +10,9 @@
                                      (mapv :restaurant))]
     (reduce
       (fn [restaurants-freq restaurant]
-        (update restaurants-freq restaurant inc))
+        (if (contains? restaurants-freq restaurant)
+          (update restaurants-freq restaurant inc)
+          restaurants-freq))
       initial-restaurants-freq
       past-events-restaurants)))
 
