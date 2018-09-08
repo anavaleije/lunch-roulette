@@ -1,6 +1,4 @@
-(ns lunch-roulette.data)
-
-(def min-groups-size 3)
+(ns lunch-roulette.aux)
 
 (def people
   {:fulana.silva   {:id                   :fulana.silva
@@ -36,8 +34,6 @@
                                            :vegan]
                     :disliked-restaurants [:pasta-mix :old-burger]}})
 
-(def n-groups (quot (count people) min-groups-size))
-
 (def restaurants
   {:green-house        {:id          :green-house
                         :name        "Green House"
@@ -72,17 +68,25 @@
 
 (def past-events
   [{:date   "2018-05-08"
-    :groups [{:people     [:siclana :beltrana :siclano]
+    :groups [{:people     [:siclana.jesus :beltrana.souza :siclano.jesus]
               :restaurant :green-house}
-             {:people     [:fulana :fulano :beltrano]
+             {:people     [:fulana.silva :fulano.silva :beltrano.souza]
               :restaurant :old-burger}]}
    {:date   "2018-05-15"
-    :groups [{:people     [:siclana :fulano :siclano]
+    :groups [{:people     [:siclana.jesus :fulano.silva :siclano.jesus]
               :restaurant :green-house}
-             {:people     [:fulana :beltrana :beltrano]
+             {:people     [:fulana.silva :beltrana.souza :beltrano.souza]
               :restaurant :pasta-mix}]}])
 
+(def fulana-key :fulana.silva)
+(def fulana (fulana-key people))
+
+(def beltrana-key :beltrana.souza)
+(def beltrana (beltrana-key people))
+
+(def siclana-key :siclana.jesus)
+(def siclana (siclana-key people))
+
 (def env {:restaurants restaurants
-          :past-events past-events
           :people      people
-          :n-groups    n-groups})
+          :past-events past-events})
